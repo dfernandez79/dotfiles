@@ -6,7 +6,13 @@ export ZSH="${HOME}/.oh-my-zsh"
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git npm gitfast)
+plugins=(
+    aliases
+    git
+    npm
+    gitfast
+    ripgrep
+)
 source $ZSH/oh-my-zsh.sh
 
 eval "$(starship init zsh)"
@@ -36,3 +42,6 @@ export PUPPETEER_DOWNLOAD_PATH=~/.npm/chromium
 # Aliases
 alias sb="npmR storybook"
 alias gcz="git cz"
+
+# Load extra configuration
+[[ -r "$HOME/.extra" ]] && source "$HOME/.extra"

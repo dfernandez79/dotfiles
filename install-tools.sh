@@ -59,3 +59,7 @@ brew install --cask virtualbox
 brew install --cask kap
 brew install --cask vlc
 brew install --cask sourcetree
+
+# VSCode Extensions
+DOTFILES_DIR="$(dirname "${BASH_SOURCE}")"
+source "$DOTFILES_DIR/install-vscode-extensions.sh"

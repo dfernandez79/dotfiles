@@ -15,8 +15,6 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
-eval "$(starship init zsh)"
-
 # ---------------------------------------------------------------------------
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -45,3 +43,5 @@ alias gcz="git cz"
 
 # Load extra configuration
 [[ -r "$HOME/.extra" ]] && source "$HOME/.extra"
+
+eval "$(starship init zsh)"

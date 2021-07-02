@@ -46,7 +46,7 @@ curl -o- -L https://yarnpkg.com/install.sh | bash
 # Starship: https://starship.rs/
 # Pyenv: https://github.com/pyenv/pyenv
 # Pastel: https://github.com/sharkdp/pastel
-brew install ripgrep starship pyenv pastel
+brew install git ripgrep starship pyenv pastel
 
 # Casks
 brew install --cask appcleaner

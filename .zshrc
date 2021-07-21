@@ -39,7 +39,9 @@ export PUPPETEER_DOWNLOAD_PATH=~/.npm/chromium
 # ---------------------------------------------------------------------------
 # Aliases
 alias sb="npmR storybook"
-alias gcz="git cz"
+
+# removes the -v flag in the oh-my-zsh git plugin
+alias gc="git commit"
 
 # Load extra configuration
 [[ -r "$HOME/.extra" ]] && source "$HOME/.extra"

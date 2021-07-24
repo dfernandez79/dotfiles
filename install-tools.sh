@@ -51,7 +51,6 @@ brew install git ripgrep starship pyenv pastel gnupg
 # Casks
 brew install --cask appcleaner
 brew install --cask keycastr
-brew install --cask font-fira-code-nerd-font
 brew install --cask iterm2
 brew install --cask visual-studio-code
 brew install --cask handbrake
@@ -59,6 +58,13 @@ brew install --cask virtualbox
 brew install --cask kap
 brew install --cask vlc
 brew install --cask sourcetree
+brew install --cask obsidian
+
+# Additional Casks
+
+# https://www.nerdfonts.com/
+brew tap homebrew/cask-fonts
+brew install --cask font-fira-code-nerd-font
 
 # VSCode Extensions
 DOTFILES_DIR="$(dirname "${BASH_SOURCE}")"

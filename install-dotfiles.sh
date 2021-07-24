@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# make sure that DOTFILES_DIR is absolute so BACKUP_DIR 
+# also works when switching the current directory
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE}")"; pwd)"
 BACKUP_DIR="${DOTFILES_DIR}/backup"
 
@@ -19,10 +21,21 @@ commit_if_dirty() {
     popd
 }
 
+# backup srcParent srcFile
+#
+# Creates a backup copy of $srcParent/$srcFile into $BACKUP_DIR.
+#
+# It will also copy any sub-directory in $srcFile.
+#
+# For example: backup $HOME .config/xyz
+# Copies .config/xyz into BACKUP_DIR
+# 
+# To copy xyz without .config:
+# backup $HOME/.config xyz
 backup() {
     local srcParent="$1"
     local srcFile="$2"
-    echo "$srcParent/$srcFile"
+
     if [[ -f "$srcParent/$srcFile" ]]; then
         commit_if_dirty "$BACKUP_DIR"
         pushd "$srcParent"

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DOTFILES_DIR="$(dirname "${BASH_SOURCE}")"
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE}")"; pwd)"
 BACKUP_DIR="${DOTFILES_DIR}/backup"
 
 init_backup_dir() {
@@ -20,17 +20,18 @@ commit_if_dirty() {
 }
 
 backup() {
-    local srcFile="$1"
-    local fileName=$(basename $1)
-    local destFile="$BACKUP_DIR/$fileName"
-
-    if [[ -f "$srcFile" ]]; then
+    local srcParent="$1"
+    local srcFile="$2"
+    echo "$srcParent/$srcFile"
+    if [[ -f "$srcParent/$srcFile" ]]; then
         commit_if_dirty "$BACKUP_DIR"
-        cp "$srcFile" "$destFile"
+        pushd "$srcParent"
+        rsync -R "$srcFile" "$BACKUP_DIR"
+        popd
 
         pushd "$BACKUP_DIR"
-        git add "${fileName}"
-        git commit -m "file: ${fileName}"
+        git add "${srcFile}"
+        git commit -m "file: ${srcFile}"
         popd
     fi
 }
@@ -39,9 +40,22 @@ if [[ ! -d "$BACKUP_DIR" ]]; then
     init_backup_dir
 fi
 
-backup $HOME/.zshrc
-cp $DOTFILES_DIR/.zshrc $HOME
+# .zshrc
+if [[ "$SKIP_ZSH" != "true" && "$SKIP_ZSH" != "1"   ]]; then
+    backup "$HOME" .zshrc
+    cp "$DOTFILES_DIR/.zshrc" "$HOME"
+fi
 
-backup $HOME/Library/Preferences/com.googlecode.iterm2.plist
-cp $DOTFILES_DIR/com.googlecode.iterm2.plist $HOME/Library/Preferences
-defaults read com.googlecode.iterm2
+# iTerm configuration
+if [[ "$SKIP_ITERM" != "true" && "$SKIP_ITERM" != "1"   ]]; then
+    backup "$HOME/Library/Preferences" com.googlecode.iterm2.plist
+    cp "$DOTFILES_DIR/com.googlecode.iterm2.plist" "$HOME/Library/Preferences"
+    defaults read com.googlecode.iterm2
+fi
+
+# Starship Prompt configuration
+if [[ "$SKIP_STARSHIP" != "true" && "$SKIP_STARSHIP" != "1"   ]]; then
+    mkdir -p "$HOME/.config" 
+    backup "$HOME" .config/starship.toml
+    cp "$DOTFILES_DIR/.config/starship.toml" "$HOME/.config/starship.toml"
+fi

@@ -41,20 +41,20 @@ if [[ ! -d "$BACKUP_DIR" ]]; then
 fi
 
 # .zshrc
-if [[ "$SKIP_ZSH" != "true" && "$SKIP_ZSH" != "1"   ]]; then
+if [[ "$SKIP_ZSH" != "true" && "$SKIP_ZSH" != "1" ]]; then
     backup "$HOME" .zshrc
     cp "$DOTFILES_DIR/.zshrc" "$HOME"
 fi
 
 # iTerm configuration
-if [[ "$SKIP_ITERM" != "true" && "$SKIP_ITERM" != "1"   ]]; then
+if [[ "$SKIP_ITERM" != "true" && "$SKIP_ITERM" != "1" ]]; then
     backup "$HOME/Library/Preferences" com.googlecode.iterm2.plist
     cp "$DOTFILES_DIR/com.googlecode.iterm2.plist" "$HOME/Library/Preferences"
     defaults read com.googlecode.iterm2
 fi
 
 # Starship Prompt configuration
-if [[ "$SKIP_STARSHIP" != "true" && "$SKIP_STARSHIP" != "1"   ]]; then
+if [[ "$SKIP_STARSHIP" != "true" && "$SKIP_STARSHIP" != "1" ]]; then
     mkdir -p "$HOME/.config" 
     backup "$HOME" .config/starship.toml
     cp "$DOTFILES_DIR/.config/starship.toml" "$HOME/.config/starship.toml"

@@ -44,6 +44,10 @@ alias c="code ."
 # removes the -v flag in the oh-my-zsh git plugin
 alias gc="git commit"
 
+# restore the run-help command (aliased to man for some reason)
+unalias run-help
+autoload run-help
+
 # Load extra configuration
 [[ -r "$HOME/.extra" ]] && source "$HOME/.extra"
 

@@ -52,3 +52,4 @@ autoload run-help
 [[ -r "$HOME/.extra" ]] && source "$HOME/.extra"
 
 eval "$(starship init zsh)"
+eval "$(rbenv init - zsh)"

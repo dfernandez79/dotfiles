@@ -48,8 +48,9 @@ alias gc="git commit"
 unalias run-help
 autoload run-help
 
-# Load extra configuration
-[[ -r "$HOME/.extra" ]] && source "$HOME/.extra"
-
 eval "$(starship init zsh)"
 eval "$(rbenv init - zsh)"
+source "$HOME/.cargo/env"
+
+# Load extra configuration
+[[ -r "$HOME/.extra" ]] && source "$HOME/.extra"

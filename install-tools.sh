@@ -69,3 +69,6 @@ brew install --cask font-fira-code-nerd-font
 # VSCode Extensions
 DOTFILES_DIR="$(dirname "${BASH_SOURCE}")"
 source "$DOTFILES_DIR/install-vscode-extensions.sh"
+
+# Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y

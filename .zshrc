@@ -38,6 +38,8 @@ export PUPPETEER_DOWNLOAD_PATH=~/.npm/chromium
 
 # ---------------------------------------------------------------------------
 # Aliases
+alias ls="exa --group-directories-first"
+alias ll="ls -lh --icons --git --no-user --no-permissions"
 alias sb="npmR storybook"
 alias c="code ."
 
@@ -51,6 +53,31 @@ autoload run-help
 eval "$(starship init zsh)"
 eval "$(rbenv init - zsh)"
 source "$HOME/.cargo/env"
+
+# exa colors: https://the.exa.website/docs/colour-themes
+GRAY1='38;5;240'
+GRAY2='38;5;244'
+WHITE='38;5;253'
+WHITE_EM='38;5;255'
+HEADER='38;5;67'
+GOLD='38;5;179'
+EXA_COLORS_LIST=(
+    "uu=${GRAY1}"
+    "da=${GRAY2}"
+    "hd=${HEADER}"
+    "di=${WHITE_EM};1"
+    "ur=${GRAY1}"
+    "uw=${GRAY1}"
+    "ue=${GRAY1}"
+    "gr=${GRAY1}"
+    "gw=${GRAY1}"
+    "tr=${GRAY1}"
+    "tw=${GRAY1}"
+    "package.json=${GOLD}"
+    "tsconfig.json=${GOLD}"
+    "package-lock.json=${GRAY1}"
+)
+export EXA_COLORS="${(j|:|)EXA_COLORS_LIST}"
 
 # Load extra configuration
 [[ -r "$HOME/.extra" ]] && source "$HOME/.extra"

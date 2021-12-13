@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
+# Make sure to cancel the whole script when Ctrl-C is pressed
+trap "exit" INT
+
 # Check the availability of Homebrew and optionally install it
 if ! [[ -x "$(command -v brew)" ]]; then
     read -p "Homebrew is not installed. Install Homebrew? [Y/n] " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]] || [[ -z "$REPLY" ]]; then
-        echo INSTALL
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     else
         echo
@@ -35,40 +37,56 @@ fi;
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-# Install nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+# Install tools using brew
+tools=(
+    git
+    # https://github.com/BurntSushi/ripgrep
+    ripgrep
+    # https://starship.rs/
+    starship
+    # https://github.com/pyenv/pyenv
+    pyenv
+    # https://github.com/sharkdp/pastel
+    pastel
+    gnupg
+    # https://the.exa.website/
+    exa
+    # https://go.dev/
+    go
+    # https://deno.land/
+    deno
+    # https://graphviz.org/
+    graphviz
+    # https://github.com/Schniz/fnm
+    fnm
+)
 
-# Install yarn 1.x
-curl -o- -L https://yarnpkg.com/install.sh | bash
+brew install ${tools[@]}
 
-# Install other tools
-# Ripgrep: https://github.com/BurntSushi/ripgrep
-# Starship: https://starship.rs/
-# Pyenv: https://github.com/pyenv/pyenv
-# Pastel: https://github.com/sharkdp/pastel
-brew install git ripgrep starship pyenv pastel gnupg rbenv exa
+# Install Casks
+brew tap homebrew/cask-fonts # https://www.nerdfonts.com/
 
-# Casks
-brew install --cask appcleaner
-brew install --cask keycastr
-brew install --cask iterm2
-brew install --cask visual-studio-code
-brew install --cask handbrake
-brew install --cask virtualbox
-brew install --cask kap
-brew install --cask vlc
-brew install --cask sourcetree
-brew install --cask obsidian
+casks=(
+    appcleaner
+    keycastr
+    font-fira-code-nerd-font
+    iterm2
+    visual-studio-code
+    handbrake
+    kap
+    vlc
+    sourcetree
+    obsidian
+    sf-symbols
+    postman
+    virtualbox
+)
 
-# Additional Casks
+brew install --cask ${casks[@]}
 
-# https://www.nerdfonts.com/
-brew tap homebrew/cask-fonts
-brew install --cask font-fira-code-nerd-font
+# Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # VSCode Extensions
 DOTFILES_DIR="$(dirname "${BASH_SOURCE}")"
 source "$DOTFILES_DIR/install-vscode-extensions.sh"
-
-# Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y

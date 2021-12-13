@@ -53,22 +53,58 @@ if [[ ! -d "$BACKUP_DIR" ]]; then
     init_backup_dir
 fi
 
-# .zshrc
-if [[ "$SKIP_ZSH" != "true" && "$SKIP_ZSH" != "1" ]]; then
+# From https://stackoverflow.com/a/8574392/346169
+containsElement () {
+    local e match="$1"
+    shift
+    for e; do [[ "$e" == "$match" ]] && return 0; done
+    return 1
+}
+
+# Configurations
+config_zsh() {
     backup "$HOME" .zshrc
     cp "$DOTFILES_DIR/.zshrc" "$HOME"
-fi
+}
 
-# iTerm configuration
-if [[ "$SKIP_ITERM" != "true" && "$SKIP_ITERM" != "1" ]]; then
+config_iterm() {
     backup "$HOME/Library/Preferences" com.googlecode.iterm2.plist
     cp "$DOTFILES_DIR/com.googlecode.iterm2.plist" "$HOME/Library/Preferences"
     defaults read com.googlecode.iterm2
-fi
+}
 
-# Starship Prompt configuration
-if [[ "$SKIP_STARSHIP" != "true" && "$SKIP_STARSHIP" != "1" ]]; then
+config_starship() {
     mkdir -p "$HOME/.config" 
     backup "$HOME" .config/starship.toml
     cp "$DOTFILES_DIR/.config/starship.toml" "$HOME/.config/starship.toml"
+}
+
+# The available configuration functions without the config_ prefix
+configs=(
+    zsh
+    iterm
+    starship
+)
+
+# If there are no arguments install everything
+if [[ $# -eq 0 ]]; then
+    to_install=( "${configs[@]}" )
+else
+    to_install=( "$@" )
 fi
+
+# Validate the names of configurations to install
+for config in "${to_install[@]}"; do
+    if ! containsElement "${config}" "${configs[@]}"; then
+        echo "Error: unknown configuration name: ${config}"
+        echo
+        echo "Available configurations: ${configs[@]}"
+        exit 1
+    fi
+done
+
+# Install each configuration
+for config in "${to_install[@]}"; do
+    "config_${config}"
+done
+

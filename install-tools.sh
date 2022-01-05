@@ -59,6 +59,8 @@ tools=(
     graphviz
     # https://github.com/Schniz/fnm
     fnm
+    # https://stedolan.github.io/jq/
+    jq
 )
 
 brew install ${tools[@]}

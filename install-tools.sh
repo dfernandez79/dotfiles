@@ -61,6 +61,8 @@ tools=(
     fnm
     # https://stedolan.github.io/jq/
     jq
+    # https://github.com/charmbracelet/glow
+    glow
 )
 
 brew install ${tools[@]}

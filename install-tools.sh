@@ -84,6 +84,7 @@ casks=(
     sf-symbols
     postman
     virtualbox
+    gpg-suite
 )
 
 brew install --cask ${casks[@]}

@@ -63,6 +63,8 @@ tools=(
     jq
     # https://github.com/charmbracelet/glow
     glow
+    # https://github.com/sharkdp/hyperfine
+    hyperfine
 )
 
 brew install ${tools[@]}

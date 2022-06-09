@@ -65,6 +65,8 @@ tools=(
     glow
     # https://github.com/sharkdp/hyperfine
     hyperfine
+    # https://cli.github.com/
+    gh
 )
 
 brew install ${tools[@]}

@@ -1,4 +1,14 @@
-eval "$(pyenv init --path)"
+# ---------------------------------------------------------------------------
+# Paths
+export PATH="${HOME}/.bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:${PATH}"
+export CDPATH="${HOME}/Projects:."
+
+# Homebrew will add itself to the PATH
+if [[ "$(uname -m)" == "arm64" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
 
 # ---------------------------------------------------------------------------
 # Oh-My-Zsh
@@ -16,6 +26,10 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # ---------------------------------------------------------------------------
+# Startship Prompt
+eval "$(starship init zsh)"
+
+# ---------------------------------------------------------------------------
 # FNM (replacement of NVM)
 eval "$(fnm env --use-on-cd)"
 
@@ -24,9 +38,8 @@ eval "$(fnm env --use-on-cd)"
 eval "$(pyenv init -)"
 
 # ---------------------------------------------------------------------------
-# Paths
-export PATH="$HOME/.bin:/usr/local/sbin:$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-export CDPATH=~/Projects:.
+# Rust's Cargo
+source "$HOME/.cargo/env"
 
 # ---------------------------------------------------------------------------
 # Other environment variables
@@ -36,6 +49,7 @@ export PUPPETEER_DOWNLOAD_PATH=~/.npm/chromium
 
 # ---------------------------------------------------------------------------
 # Aliases
+
 alias ls="exa --group-directories-first"
 alias ll="ls -lh --icons --git"
 alias l="ll --no-user --no-permissions"
@@ -51,10 +65,10 @@ alias gc="git commit"
 unalias run-help
 autoload run-help
 
-eval "$(starship init zsh)"
-source "$HOME/.cargo/env"
+# ---------------------------------------------------------------------------
+# Exa Colors
+# https://the.exa.website/docs/colour-themes
 
-# exa colors: https://the.exa.website/docs/colour-themes
 GRAY1='38;5;240'
 GRAY2='38;5;244'
 WHITE='38;5;253'
@@ -79,5 +93,6 @@ EXA_COLORS_LIST=(
 )
 export EXA_COLORS="${(j|:|)EXA_COLORS_LIST}"
 
-# Load extra configuration
-[[ -r "$HOME/.extra" ]] && source "$HOME/.extra"
+# ---------------------------------------------------------------------------
+# Extra configuration
+[[ -r "${HOME}/.extra" ]] && source "${HOME}/.extra"

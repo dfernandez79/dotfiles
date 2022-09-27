@@ -3,8 +3,15 @@
 # Make sure to cancel the whole script when Ctrl-C is pressed
 trap "exit" INT
 
+# Define the HOMEBREW_PREFIX based on the machine type
+if [[ "$(uname -m)" == "arm64" ]]; then
+    HOMEBREW_PREFIX="/opt/homebrew"
+else
+    HOMEBREW_PREFIX="/usr/local"
+fi
+
 # Check the availability of Homebrew and optionally install it
-if ! [[ -x "$(command -v brew)" ]]; then
+if ! [[ -x "${HOMEBREW_PREFIX}/bin/brew" ]]; then
     read -p "Homebrew is not installed. Install Homebrew? [Y/n] " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]] || [[ -z "$REPLY" ]]; then
@@ -16,6 +23,8 @@ if ! [[ -x "$(command -v brew)" ]]; then
         exit 1
     fi
 fi
+
+eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
 
 # Make sure we’re using the latest Homebrew
 brew update

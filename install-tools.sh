@@ -90,14 +90,9 @@ casks=(
     iterm2
     visual-studio-code
     handbrake
-    kap
     vlc
-    sourcetree
     obsidian
     sf-symbols
-    postman
-    virtualbox
-    gpg-suite
 )
 
 brew install --cask ${casks[@]}

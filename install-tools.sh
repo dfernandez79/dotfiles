@@ -57,7 +57,9 @@ tools=(
     pyenv
     # https://github.com/sharkdp/pastel
     pastel
+    # GnuPG
     gnupg
+    pinentry-mac
     # https://the.exa.website/
     exa
     # https://go.dev/

@@ -11,6 +11,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # --- Brewfile start ---
 brew bundle --no-lock --file=- <<EOF
+tap "homebrew/cask-fonts"
+
 brew "antigen"
 brew "chezmoi"
 brew "fnm"

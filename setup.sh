@@ -43,6 +43,7 @@ cask "sf-symbols"
 cask "utm"
 cask "visual-studio-code"
 cask "vlc"
+cask "zoom"
 
 mas "Gifski", id: 1351639930
 mas "Hidden Bar", id: 1452453066

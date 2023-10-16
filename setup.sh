@@ -86,5 +86,5 @@ if ! fgrep -q "${HOMEBREW_PREFIX}/bin/zsh" /etc/shells; then
     chsh -s "${HOMEBREW_PREFIX}/bin/zsh";
 fi;
 
-chezmoi init $REPOSITORY
-
+mkdir -p ~/Projects
+chezmoi init --apply $REPOSITORY

@@ -52,6 +52,7 @@ mas "MindNode", id: 1289197285
 mas "Moom", id: 419330170
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "PastePal", id: 1503446680
 mas "Pixelmator Pro", id: 1289583905
 mas "Streaks", id: 963034692
 mas "WhatsApp", id: 1147396723

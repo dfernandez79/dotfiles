@@ -1,0 +1,57 @@
+source $HOMEBREW_PREFIX/share/antigen/antigen.zsh
+
+# ---------------------------------------------------------------------------
+# Antigen
+antigen use oh-my-zsh
+
+antigen bundle <<EOF
+    git
+    npm
+    gitfast
+    ripgrep
+
+    macos
+    djui/alias-tips
+    zsh-users/zsh-autosuggestions
+    zsh-users/zsh-completions
+    zsh-users/zsh-history-substring-search
+    zsh-users/zsh-syntax-highlighting
+<<EOF
+
+antigen apply
+
+
+# ---------------------------------------------------------------------------
+# Paths
+export PATH="${HOME}/.bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:${PATH}"
+export CDPATH="${HOME}/Projects:."
+
+# ---------------------------------------------------------------------------
+# Startship Prompt
+eval "$(starship init zsh)"
+
+# ---------------------------------------------------------------------------
+# FNM (replacement of NVM)
+eval "$(fnm env --use-on-cd)"
+
+# ---------------------------------------------------------------------------
+# Aliases
+
+alias ls="lsd --group-dirs=first"
+alias ll="ls -l --git '--date=+%Y-%m-%d %H:%M:%S'"
+alias l="ll --blocks=permission,size,date,name"
+alias la="l -A"
+
+alias sb="npmR storybook"
+alias c="code ."
+
+# removes the -v flag in the oh-my-zsh git plugin
+alias gc="git commit"
+
+# restore the run-help command (aliased to man for some reason)
+unalias run-help
+autoload run-help
+
+# ---------------------------------------------------------------------------
+# Extra configuration
+[[ -r "${HOME}/.extra" ]] && source "${HOME}/.extra"

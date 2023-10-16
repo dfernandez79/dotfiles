@@ -4,7 +4,7 @@ source $HOMEBREW_PREFIX/share/antigen/antigen.zsh
 # Antigen
 antigen use oh-my-zsh
 
-antigen bundle <<EOF
+antigen bundles <<EOF
     git
     npm
     gitfast

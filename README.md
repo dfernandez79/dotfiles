@@ -3,6 +3,9 @@
 These are my personal dotfiles. To learn more about dotfiles see the
 [awesome dotfiles list](https://github.com/webpro/awesome-dotfiles).
 
+```shell
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/dfernandez79/dotfiles/main/install.sh)"
+``
 **⚠️ Before using this project:**
 
 - Use and remix at your own risk.
@@ -19,3 +22,4 @@ These are my personal dotfiles. To learn more about dotfiles see the
 4. Run `./install-config.sh` to write the configuration in your home (the old
    files are stored in `./backup` using git, so you can rollback to previous
    versions)
+```

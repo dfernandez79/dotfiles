@@ -1,24 +1,13 @@
 #!/usr/bin/env bash
 
+REPOSITORY=https://github.com/dfernandez79/dotfiles
+
 # Make sure to cancel the whole script when Ctrl-C is pressed
 trap "exit" INT
 
 # Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# mas "Gifski", id: 1351639930
-# mas "Hidden Bar", id: 1452453066
-# mas "Keynote", id: 409183694
-# mas "MindNode", id: 1289197285
-# mas "Moom", id: 419330170
-# mas "Numbers", id: 409203825
-# mas "Pages", id: 409201541
-# mas "Pixelmator Pro", id: 1289583905
-# mas "Streaks", id: 963034692
-# mas "WhatsApp", id: 1147396723
-# mas "Xcode", id: 497799835
-
 
 # --- Brewfile start ---
 brew bundle --no-lock --file=- <<EOF
@@ -51,6 +40,18 @@ cask "utm"
 cask "visual-studio-code"
 cask "vlc"
 
+mas "Gifski", id: 1351639930
+mas "Hidden Bar", id: 1452453066
+mas "Keynote", id: 409183694
+mas "MindNode", id: 1289197285
+mas "Moom", id: 419330170
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Pixelmator Pro", id: 1289583905
+mas "Streaks", id: 963034692
+mas "WhatsApp", id: 1147396723
+mas "Xcode", id: 497799835
+
 vscode "bierner.github-markdown-preview"
 vscode "bierner.markdown-checkbox"
 vscode "bierner.markdown-emoji"
@@ -79,11 +80,11 @@ EOF
 # --- Brewfile end ---
 
 # Use the latest zsh version from Homebrew
-if ! fgrep -q "${HOMEBREW_PREFIX}/zsh" /etc/shells; then
-    echo "Adding ${HOMEBREW_PREFIX}/zsh to /etc/shells"
-    echo "${HOMEBREW_PREFIX}/zsh" | sudo tee -a /etc/shells;
-    chsh -s "${HOMEBREW_PREFIX}/zsh";
+if ! fgrep -q "${HOMEBREW_PREFIX}/bin/zsh" /etc/shells; then
+    echo "Adding ${HOMEBREW_PREFIX}/bin/zsh to /etc/shells"
+    echo "${HOMEBREW_PREFIX}/bin/zsh" | sudo tee -a /etc/shells;
+    chsh -s "${HOMEBREW_PREFIX}/bin/zsh";
 fi;
 
-chezmoi init -S .
+chezmoi init $REPOSITORY
 

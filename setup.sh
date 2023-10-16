@@ -31,6 +31,7 @@ brew "starship"
 brew "zsh"
 
 cask "appcleaner"
+cask "figma"
 cask "font-fira-code-nerd-font"
 cask "gitup"
 cask "handbrake"

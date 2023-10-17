@@ -43,6 +43,7 @@ cask "sf-symbols"
 cask "utm"
 cask "visual-studio-code"
 cask "vlc"
+cask "slack"
 cask "zoom"
 
 mas "Gifski", id: 1351639930

@@ -34,21 +34,24 @@ cask "appcleaner"
 cask "figma"
 cask "font-fira-code-nerd-font"
 cask "gitup"
+cask "google-chrome"
 cask "handbrake"
 cask "iterm2"
 cask "keycastr"
 cask "obsidian"
 cask "openvpn-connect"
+cask "origami-studio"
 cask "sf-symbols"
+cask "slack"
 cask "utm"
 cask "visual-studio-code"
 cask "vlc"
-cask "slack"
 cask "zoom"
 
 mas "Gifski", id: 1351639930
 mas "Hidden Bar", id: 1452453066
 mas "Keynote", id: 409183694
+mas "Kindle", id: 302584613
 mas "MindNode", id: 1289197285
 mas "Moom", id: 419330170
 mas "Numbers", id: 409203825

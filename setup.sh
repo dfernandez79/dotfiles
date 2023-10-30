@@ -12,6 +12,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # --- Brewfile start ---
 brew bundle --no-lock --file=- <<EOF
 tap "homebrew/cask-fonts"
+tap "homebrew/cask-versions"
 
 brew "antigen"
 brew "chezmoi"
@@ -32,6 +33,7 @@ brew "zsh"
 
 cask "appcleaner"
 cask "figma"
+cask "firefox-developer-edition"
 cask "font-fira-code-nerd-font"
 cask "gitup"
 cask "google-chrome"

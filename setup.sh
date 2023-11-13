@@ -28,6 +28,7 @@ brew "lsd"
 brew "mas"
 brew "pinentry-mac"
 brew "ripgrep"
+brew "shfmt"
 brew "starship"
 brew "zsh"
 

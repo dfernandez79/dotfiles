@@ -42,7 +42,6 @@ alias ll="ls -l --git '--date=+%Y-%m-%d %H:%M:%S'"
 alias l="ll --blocks=permission,size,date,name"
 alias la="l -A"
 
-alias sb="npmR storybook"
 alias c="code ."
 
 # removes the -v flag in the oh-my-zsh git plugin

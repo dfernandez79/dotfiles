@@ -15,6 +15,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 
 brew "antigen"
+brew "ast-grep"
 brew "chezmoi"
 brew "fnm"
 brew "gh"
@@ -26,9 +27,12 @@ brew "hyperfine"
 brew "jq"
 brew "lsd"
 brew "mas"
+brew "ollama"
+brew "pastel"
 brew "pinentry-mac"
 brew "ripgrep"
 brew "shfmt"
+brew "sqllite"
 brew "starship"
 brew "zsh"
 
@@ -52,6 +56,7 @@ cask "vlc"
 cask "zoom"
 
 mas "Gifski", id: 1351639930
+mas "Grammarly for Safari", id: 1462114288
 mas "Hidden Bar", id: 1452453066
 mas "Keynote", id: 409183694
 mas "Kindle", id: 302584613
@@ -77,6 +82,8 @@ vscode "dbaeumer.vscode-eslint"
 vscode "eamodio.gitlens"
 vscode "EditorConfig.EditorConfig"
 vscode "esbenp.prettier-vscode"
+vscode "figma.figma-vscode-extension"
+vscode "foxundermoon.shell-format"
 vscode "GitHub.vscode-pull-request-github"
 vscode "Gruntfuggly.todo-tree"
 vscode "humao.rest-client"

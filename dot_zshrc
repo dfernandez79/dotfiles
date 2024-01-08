@@ -32,6 +32,7 @@ eval "$(starship init zsh)"
 
 # ---------------------------------------------------------------------------
 # FNM (replacement of NVM)
+export FNM_COREPACK_ENABLED=true
 eval "$(fnm env --use-on-cd)"
 
 # ---------------------------------------------------------------------------

@@ -16,6 +16,7 @@ tap "homebrew/cask-versions"
 
 brew "antigen"
 brew "ast-grep"
+brew "sqlite"
 brew "chezmoi"
 brew "fnm"
 brew "gh"
@@ -37,6 +38,7 @@ brew "starship"
 brew "zsh"
 
 cask "appcleaner"
+cask "chatgpt"
 cask "figma"
 cask "firefox-developer-edition"
 cask "font-fira-code-nerd-font"
@@ -44,6 +46,7 @@ cask "gitup"
 cask "google-chrome"
 cask "handbrake"
 cask "iterm2"
+cask "keyboardcleantool"
 cask "keycastr"
 cask "obsidian"
 cask "openvpn-connect"
@@ -55,6 +58,7 @@ cask "visual-studio-code"
 cask "vlc"
 cask "zoom"
 
+mas "CrystalFetch", id: 6454431289
 mas "Gifski", id: 1351639930
 mas "Grammarly for Safari", id: 1462114288
 mas "Hidden Bar", id: 1452453066
@@ -70,6 +74,8 @@ mas "Streaks", id: 963034692
 mas "WhatsApp", id: 1147396723
 mas "Xcode", id: 497799835
 
+vscode "anweber.vscode-httpyac"
+vscode "bierner.comment-tagged-templates"
 vscode "bierner.github-markdown-preview"
 vscode "bierner.markdown-checkbox"
 vscode "bierner.markdown-emoji"
@@ -77,24 +83,24 @@ vscode "bierner.markdown-footnotes"
 vscode "bierner.markdown-mermaid"
 vscode "bierner.markdown-preview-github-styles"
 vscode "bierner.markdown-yaml-preamble"
-vscode "DavidAnson.vscode-markdownlint"
+vscode "davidanson.vscode-markdownlint"
 vscode "dbaeumer.vscode-eslint"
 vscode "eamodio.gitlens"
-vscode "EditorConfig.EditorConfig"
+vscode "editorconfig.editorconfig"
 vscode "esbenp.prettier-vscode"
 vscode "figma.figma-vscode-extension"
 vscode "foxundermoon.shell-format"
-vscode "GitHub.vscode-pull-request-github"
-vscode "Gruntfuggly.todo-tree"
-vscode "humao.rest-client"
+vscode "github.vscode-pull-request-github"
+vscode "gruntfuggly.todo-tree"
 vscode "ms-vsliveshare.vsliveshare"
-vscode "Orta.vscode-jest"
+vscode "orta.vscode-jest"
 vscode "pflannery.vscode-versionlens"
+vscode "pomdtr.excalidraw-editor"
 vscode "stkb.rewrap"
 vscode "streetsidesoftware.code-spell-checker"
 vscode "streetsidesoftware.code-spell-checker-spanish"
 vscode "styled-components.vscode-styled-components"
-vscode "unifiedjs.vscode-mdx"
+vscode "vitest.explorer"
 vscode "vscode-icons-team.vscode-icons"
 EOF
 # --- Brewfile end ---
@@ -102,9 +108,9 @@ EOF
 # Use the latest zsh version from Homebrew
 if ! fgrep -q "${HOMEBREW_PREFIX}/bin/zsh" /etc/shells; then
     echo "Adding ${HOMEBREW_PREFIX}/bin/zsh to /etc/shells"
-    echo "${HOMEBREW_PREFIX}/bin/zsh" | sudo tee -a /etc/shells;
-    chsh -s "${HOMEBREW_PREFIX}/bin/zsh";
-fi;
+    echo "${HOMEBREW_PREFIX}/bin/zsh" | sudo tee -a /etc/shells
+    chsh -s "${HOMEBREW_PREFIX}/bin/zsh"
+fi
 
 mkdir -p ~/Projects
 chezmoi init --apply $REPOSITORY

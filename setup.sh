@@ -13,6 +13,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 brew bundle --no-lock --file=- <<EOF
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
+tap "oven-sh/bun"
 
 brew "antigen"
 brew "ast-grep"
@@ -36,11 +37,12 @@ brew "shfmt"
 brew "sqllite"
 brew "starship"
 brew "zsh"
+brew "oven-sh/bun/bun"
 
 cask "appcleaner"
 cask "chatgpt"
 cask "figma"
-cask "firefox-developer-edition"
+cask "firefox@developer-edition"
 cask "font-fira-code-nerd-font"
 cask "gitup"
 cask "google-chrome"
@@ -48,8 +50,8 @@ cask "handbrake"
 cask "iterm2"
 cask "keyboardcleantool"
 cask "keycastr"
+cask "moom"
 cask "obsidian"
-cask "openvpn-connect"
 cask "origami-studio"
 cask "sf-symbols"
 cask "slack"
@@ -65,13 +67,12 @@ mas "Hidden Bar", id: 1452453066
 mas "Keynote", id: 409183694
 mas "Kindle", id: 302584613
 mas "MindNode", id: 1289197285
-mas "Moom", id: 419330170
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "PastePal", id: 1503446680
 mas "Pixelmator Pro", id: 1289583905
 mas "Streaks", id: 963034692
-mas "WhatsApp", id: 1147396723
+mas "‎WhatsApp", id: 310633997
 mas "Xcode", id: 497799835
 
 vscode "anweber.vscode-httpyac"
@@ -86,12 +87,14 @@ vscode "bierner.markdown-yaml-preamble"
 vscode "davidanson.vscode-markdownlint"
 vscode "dbaeumer.vscode-eslint"
 vscode "eamodio.gitlens"
-vscode "editorconfig.editorconfig"
 vscode "esbenp.prettier-vscode"
 vscode "figma.figma-vscode-extension"
 vscode "foxundermoon.shell-format"
+vscode "github.github-vscode-theme"
+vscode "github.vscode-github-actions"
 vscode "github.vscode-pull-request-github"
 vscode "gruntfuggly.todo-tree"
+vscode "johnpapa.vscode-peacock"
 vscode "ms-vsliveshare.vsliveshare"
 vscode "orta.vscode-jest"
 vscode "pflannery.vscode-versionlens"

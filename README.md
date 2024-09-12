@@ -16,12 +16,37 @@ These are my dotfiles. To learn more about dotfiles, see the
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/dfernandez79/dotfiles/main/setup.sh)"
 ```
 
-It will use [Homebrew bundle](https://github.com/Homebrew/homebrew-bundle) 
+It will use [Homebrew bundle](https://github.com/Homebrew/homebrew-bundle)
 to install Homebrew packages, macOS applications, and VSCode plugins.
 
-The script will ask for your admin password multiple times during the installation. 
+The script will ask for your admin password multiple times during the installation.
 Before running it, please check the script source, and **never run the bash+curl mindlessly**.
 
-Some applications in the Apple Store bundle are paid and may only be installed if you 
+Some applications in the Apple Store bundle are paid and may only be installed if you
 purchased them. If an installation fails, ignore it, and the script will continue.
 
+## [Chezmoi](https://www.chezmoi.io/) Quick Reference
+
+Edit the source state:
+
+```shell
+chezmoi edit ~/.zshrc
+```
+
+See what changes chezmoi would make:
+
+```shell
+chezmoi diff
+```
+
+Apply the changes:
+
+```shell
+chezmoi -v apply
+```
+
+Change to the chezmoi directory:
+
+```shell
+chezmoi cd
+```

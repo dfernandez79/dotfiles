@@ -1,1 +1,7 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+[[ -r "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+[[ -r "$HOME/.swiftly/env.sh" ]] && source "$HOME/.swiftly/env.sh"
+
+export PATH="${HOME}/.bin:${HOME}/.local/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:${PATH}"
+export CDPATH="${HOME}/Projects:."

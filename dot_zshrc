@@ -22,11 +22,6 @@ EOF
 antigen apply
 
 # ---------------------------------------------------------------------------
-# Paths
-export PATH="${HOME}/.bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:${PATH}"
-export CDPATH="${HOME}/Projects:."
-
-# ---------------------------------------------------------------------------
 # Startship Prompt
 eval "$(starship init zsh)"
 
@@ -51,7 +46,3 @@ alias gc="git commit"
 # restore the run-help command (aliased to man for some reason)
 unalias run-help
 autoload run-help
-
-# ---------------------------------------------------------------------------
-# Extra configuration
-[[ -r "${HOME}/.extra" ]] && source "${HOME}/.extra"

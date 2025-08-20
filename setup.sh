@@ -17,12 +17,10 @@ tap "oven-sh/bun"
 
 brew "antigen"
 brew "ast-grep"
-brew "sqlite"
 brew "chezmoi"
 brew "fnm"
 brew "gh"
 brew "git"
-brew "pinentry"
 brew "gnupg"
 brew "graphviz"
 brew "hyperfine"
@@ -30,29 +28,30 @@ brew "jq"
 brew "lsd"
 brew "mas"
 brew "ollama"
-brew "pastel"
+brew "oven-sh/bun/bun"
 brew "pinentry-mac"
+brew "pinentry"
 brew "ripgrep"
 brew "shfmt"
+brew "sqlite"
 brew "sqllite"
 brew "starship"
 brew "zsh"
-brew "oven-sh/bun/bun"
 
-cask "appcleaner"
 cask "chatgpt"
 cask "figma"
 cask "firefox@developer-edition"
 cask "font-fira-code-nerd-font"
-cask "gitup"
+cask "ghostty"
+cask "gitup-app"
 cask "google-chrome"
 cask "handbrake"
-cask "iterm2"
 cask "keyboardcleantool"
 cask "keycastr"
 cask "moom"
 cask "obsidian"
 cask "origami-studio"
+cask "raycast"
 cask "sf-symbols"
 cask "slack"
 cask "utm"
@@ -60,22 +59,25 @@ cask "visual-studio-code"
 cask "vlc"
 cask "zoom"
 
+mas "Actions", id: 1586435171
+mas "Affinity Designer 2", id: 1616831348
 mas "CrystalFetch", id: 6454431289
+mas "Developer", id: 640199958
 mas "Gifski", id: 1351639930
 mas "Grammarly for Safari", id: 1462114288
 mas "Hidden Bar", id: 1452453066
 mas "Keynote", id: 409183694
 mas "Kindle", id: 302584613
-mas "MindNode", id: 1289197285
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "PastePal", id: 1503446680
 mas "Pixelmator Pro", id: 1289583905
+mas "Raycast Companion", id: 6738274497
 mas "Streaks", id: 963034692
-mas "‎WhatsApp", id: 310633997
+mas "Velja", id: 1607635845
+mas "WhatsApp", id: 310633997
 mas "Xcode", id: 497799835
 
-vscode "anweber.vscode-httpyac"
+vscode "astro-build.astro-vscode"
 vscode "bierner.comment-tagged-templates"
 vscode "bierner.github-markdown-preview"
 vscode "bierner.markdown-checkbox"
@@ -85,24 +87,26 @@ vscode "bierner.markdown-mermaid"
 vscode "bierner.markdown-preview-github-styles"
 vscode "bierner.markdown-yaml-preamble"
 vscode "davidanson.vscode-markdownlint"
+vscode "bradlc.vscode-tailwindcss"
 vscode "dbaeumer.vscode-eslint"
 vscode "eamodio.gitlens"
 vscode "esbenp.prettier-vscode"
-vscode "figma.figma-vscode-extension"
 vscode "foxundermoon.shell-format"
+vscode "github.copilot"
 vscode "github.github-vscode-theme"
 vscode "github.vscode-github-actions"
 vscode "github.vscode-pull-request-github"
 vscode "gruntfuggly.todo-tree"
 vscode "johnpapa.vscode-peacock"
+vscode "mechatroner.rainbow-csv"
 vscode "ms-vsliveshare.vsliveshare"
-vscode "orta.vscode-jest"
 vscode "pflannery.vscode-versionlens"
 vscode "pomdtr.excalidraw-editor"
 vscode "stkb.rewrap"
 vscode "streetsidesoftware.code-spell-checker"
 vscode "streetsidesoftware.code-spell-checker-spanish"
 vscode "styled-components.vscode-styled-components"
+vscode "unifiedjs.vscode-mdx"
 vscode "vitest.explorer"
 vscode "vscode-icons-team.vscode-icons"
 EOF

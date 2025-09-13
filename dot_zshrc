@@ -10,8 +10,9 @@ antigen bundles <<EOF
     yarn
     gitfast
     ripgrep
-
+    fzf
     macos
+    tmux
     djui/alias-tips
     zsh-users/zsh-autosuggestions
     zsh-users/zsh-completions

@@ -8,6 +8,7 @@ antigen bundles <<EOF
     git
     npm
     yarn
+    pnpm
     gitfast
     ripgrep
     fzf
@@ -40,6 +41,7 @@ alias l="ll --blocks=permission,size,date,name"
 alias la="l -A"
 
 alias c="code ."
+alias yx="yarn dlx"
 
 # removes the -v flag in the oh-my-zsh git plugin
 alias gc="git commit"

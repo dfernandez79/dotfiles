@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 REPOSITORY=https://github.com/dfernandez79/dotfiles
 
 # Make sure to cancel the whole script when Ctrl-C is pressed
-trap "exit" INT
+trap "exit" INT TERM
 
 # Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -135,11 +135,11 @@ EOF
 # --- Brewfile end ---
 
 # Use the latest zsh version from Homebrew
-if ! fgrep -q "${HOMEBREW_PREFIX}/bin/zsh" /etc/shells; then
+if ! grep -q "${HOMEBREW_PREFIX}/bin/zsh" /etc/shells; then
     echo "Adding ${HOMEBREW_PREFIX}/bin/zsh to /etc/shells"
     echo "${HOMEBREW_PREFIX}/bin/zsh" | sudo tee -a /etc/shells
     chsh -s "${HOMEBREW_PREFIX}/bin/zsh"
 fi
 
 mkdir -p ~/Projects
-chezmoi init --apply $REPOSITORY
+chezmoi init --apply "$REPOSITORY"

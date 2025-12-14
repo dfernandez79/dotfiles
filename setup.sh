@@ -9,6 +9,8 @@ trap "exit" INT TERM
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+export PATH="${HOMEBREW_PREFIX}/bin:$PATH"
+
 # --- Brewfile start ---
 brew bundle --file=- <<EOF
 tap "oven-sh/bun"
@@ -142,4 +144,4 @@ if ! grep -q "${HOMEBREW_PREFIX}/bin/zsh" /etc/shells; then
 fi
 
 mkdir -p ~/Projects
-"${HOMEBREW_PREFIX}/bin/chezmoi" init --apply "$REPOSITORY"
+chezmoi init --apply "$REPOSITORY"

@@ -2,16 +2,26 @@
 
 REPOSITORY=https://github.com/dfernandez79/dotfiles
 
+set -euo pipefail
+
+log() {
+    [[ -n ${DEBUG:-} ]] && printf '[INFO] %s\n' "$*"
+}
+
 # Make sure to cancel the whole script when Ctrl-C is pressed
 trap "exit" INT TERM
 
 # Install Homebrew
+log "Installing Homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+log "Configuring Homebrew shell environment"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export PATH="${HOMEBREW_PREFIX}/bin:$PATH"
 
 # --- Brewfile start ---
+log "Installing packages via brew bundle"
 brew bundle --file=- <<EOF
 tap "oven-sh/bun"
 
@@ -138,10 +148,13 @@ EOF
 
 # Use the latest zsh version from Homebrew
 if ! grep -q "${HOMEBREW_PREFIX}/bin/zsh" /etc/shells; then
-    echo "Adding ${HOMEBREW_PREFIX}/bin/zsh to /etc/shells"
+    log "Adding ${HOMEBREW_PREFIX}/bin/zsh to /etc/shells"
     echo "${HOMEBREW_PREFIX}/bin/zsh" | sudo tee -a /etc/shells
     chsh -s "${HOMEBREW_PREFIX}/bin/zsh"
 fi
 
+log "Creating ~/Projects"
 mkdir -p ~/Projects
+
+log "Initializing chezmoi from $REPOSITORY"
 chezmoi init --apply "$REPOSITORY"

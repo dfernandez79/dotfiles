@@ -142,4 +142,4 @@ if ! grep -q "${HOMEBREW_PREFIX}/bin/zsh" /etc/shells; then
 fi
 
 mkdir -p ~/Projects
-chezmoi init --apply "$REPOSITORY"
+"${HOMEBREW_PREFIX}/bin/chezmoi" init --apply "$REPOSITORY"

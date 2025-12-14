@@ -10,7 +10,7 @@ trap "exit" INT TERM
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # --- Brewfile start ---
-brew bundle --no-lock --file=- <<EOF
+brew bundle --file=- <<EOF
 tap "oven-sh/bun"
 
 brew "antigen"

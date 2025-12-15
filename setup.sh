@@ -8,7 +8,7 @@ set -euo pipefail
 trap "exit" INT TERM
 
 log() {
-    [[ -n ${DEBUG:-} ]] && printf '[INFO] %s\n' "$*"
+    [[ -n ${DEBUG:-} ]] && printf '[INFO] %s\n' "$*" || true
 }
 
 # Install Homebrew if not already installed

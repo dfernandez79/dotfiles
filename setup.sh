@@ -4,94 +4,12 @@ REPOSITORY=https://github.com/dfernandez79/dotfiles
 
 set -euo pipefail
 
-log() {
-    [[ -n ${DEBUG:-} ]] && printf '[INFO] %s\n' "$*"
-}
-
 # Make sure to cancel the whole script when Ctrl-C is pressed
 trap "exit" INT TERM
 
-# --- Package selection menu ---
-typeset -A menu_items
-menu_items=(
-    [mas]="Apple Store Applications (requires an iCloud Account)"
-    [vscode]="VSCode Plugins"
-)
-
-typeset -A selected
-selected=([mas]=0 [vscode]=0)
-
-keys=(mas vscode)
-current=0
-
-show_menu() {
-    clear
-    print "Select optional packages to install:"
-    print "(Use arrow keys to navigate, Space to toggle, Enter to confirm)\n"
-
-    for i in {1..${#keys[@]}}; do
-        local key=${keys[$i]}
-        local marker=" "
-        [[ ${selected[$key]} -eq 1 ]] && marker="x"
-
-        if [[ $((i-1)) -eq $current ]]; then
-            print "\033[7m[$marker] ${menu_items[$key]}\033[0m"
-        else
-            print "[$marker] ${menu_items[$key]}"
-        fi
-    done
-
-    print ""
+log() {
+    [[ -n ${DEBUG:-} ]] && printf '[INFO] %s\n' "$*"
 }
-
-read_key() {
-    local key k1 k2
-    IFS= read -rsk1 key || true
-    if [[ $key == $'\e' ]]; then
-        read -rsk1 -t 0.1 k1 || true
-        read -rsk1 -t 0.1 k2 || true
-        key="${k1}${k2}"
-        case $key in
-            '[A') echo "up" ;;
-            '[B') echo "down" ;;
-            *) echo "" ;;
-        esac
-    elif [[ $key == ' ' ]]; then
-        echo "space"
-    elif [[ $key == $'\n' || $key == $'\r' || $key == '' ]]; then
-        echo "enter"
-    else
-        echo ""
-    fi
-}
-
-# Interactive menu loop
-while true; do
-    show_menu
-    action=$(read_key)
-
-    case $action in
-        up)
-            ((current > 0)) && ((current--)) || true
-            ;;
-        down)
-            ((current < ${#keys[@]} - 1)) && ((current++)) || true
-            ;;
-        space)
-            local k=${keys[$((current + 1))]}
-            selected[$k]=$(( 1 - ${selected[$k]} ))
-            ;;
-        enter)
-            break
-            ;;
-    esac
-done
-
-clear
-INSTALL_MAS=${selected[mas]}
-INSTALL_VSCODE=${selected[vscode]}
-
-log "Selected options: MAS=$INSTALL_MAS, VSCode=$INSTALL_VSCODE"
 
 # Install Homebrew if not already installed
 if ! command -v brew &>/dev/null && [[ ! -x /opt/homebrew/bin/brew ]]; then
@@ -164,7 +82,7 @@ cask "visual-studio-code"
 BREWFILE_CORE
 )
 
-if [[ $INSTALL_MAS -eq 1 ]]; then
+if [[ -z ${SKIP_APPSTORE:-} ]]; then
     BREWFILE+=$(cat <<'BREWFILE_MAS'
 
 mas "Actions", id: 1586435171
@@ -186,7 +104,7 @@ BREWFILE_MAS
 )
 fi
 
-if [[ $INSTALL_VSCODE -eq 1 ]]; then
+if [[ -z ${SKIP_VSCODE:-} ]]; then
     BREWFILE+=$(cat <<'BREWFILE_VSCODE'
 
 vscode "anthropic.claude-code"

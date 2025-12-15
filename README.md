@@ -25,6 +25,28 @@ Before running it, please check the script source, and **never run the zsh+curl 
 Some applications in the Apple Store bundle are paid and may only be installed if you
 purchased them. If an installation fails, ignore it, and the script will continue.
 
+### Options
+
+You can skip optional package groups by setting environment variables:
+
+| Variable        | Description                     |
+| --------------- | ------------------------------- |
+| `SKIP_APPSTORE` | Skip Mac App Store applications |
+| `SKIP_VSCODE`   | Skip VSCode plugins             |
+
+Examples:
+
+```shell
+# Skip App Store applications
+SKIP_APPSTORE=1 /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/dfernandez79/dotfiles/main/setup.sh)"
+
+# Skip VSCode plugins
+SKIP_VSCODE=1 /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/dfernandez79/dotfiles/main/setup.sh)"
+
+# Skip both
+SKIP_APPSTORE=1 SKIP_VSCODE=1 /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/dfernandez79/dotfiles/main/setup.sh)"
+```
+
 ## [Chezmoi](https://www.chezmoi.io/) Quick Reference
 
 Edit the source state:

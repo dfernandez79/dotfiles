@@ -11,9 +11,93 @@ log() {
 # Make sure to cancel the whole script when Ctrl-C is pressed
 trap "exit" INT TERM
 
-# Install Homebrew
-log "Installing Homebrew"
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# --- Package selection menu ---
+typeset -A options
+options=(
+    [mas]="Apple Store Applications (requires an iCloud Account)"
+    [vscode]="VSCode Plugins"
+)
+
+typeset -A selected
+selected=([mas]=0 [vscode]=0)
+
+keys=(mas vscode)
+current=0
+
+show_menu() {
+    clear
+    print "Select optional packages to install:"
+    print "(Use arrow keys to navigate, Space to toggle, Enter to confirm)\n"
+
+    for i in {1..${#keys[@]}}; do
+        local key=${keys[$i]}
+        local marker=" "
+        [[ ${selected[$key]} -eq 1 ]] && marker="x"
+
+        if [[ $((i-1)) -eq $current ]]; then
+            print "\033[7m[$marker] ${options[$key]}\033[0m"
+        else
+            print "[$marker] ${options[$key]}"
+        fi
+    done
+
+    print ""
+}
+
+read_key() {
+    local key
+    read -rsk1 key
+    if [[ $key == $'\e' ]]; then
+        read -rsk2 key
+        case $key in
+            '[A') echo "up" ;;
+            '[B') echo "down" ;;
+            *) echo "" ;;
+        esac
+    elif [[ $key == ' ' ]]; then
+        echo "space"
+    elif [[ $key == '' ]]; then
+        echo "enter"
+    else
+        echo ""
+    fi
+}
+
+# Interactive menu loop
+while true; do
+    show_menu
+    action=$(read_key)
+
+    case $action in
+        up)
+            ((current > 0)) && ((current--))
+            ;;
+        down)
+            ((current < ${#keys[@]} - 1)) && ((current++))
+            ;;
+        space)
+            local key=${keys[$((current + 1))]}
+            selected[$key]=$(( 1 - ${selected[$key]} ))
+            ;;
+        enter)
+            break
+            ;;
+    esac
+done
+
+clear
+INSTALL_MAS=${selected[mas]}
+INSTALL_VSCODE=${selected[vscode]}
+
+log "Selected options: MAS=$INSTALL_MAS, VSCode=$INSTALL_VSCODE"
+
+# Install Homebrew if not already installed
+if ! command -v brew &>/dev/null && [[ ! -x /opt/homebrew/bin/brew ]]; then
+    log "Installing Homebrew"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    log "Homebrew already installed, skipping"
+fi
 
 log "Configuring Homebrew shell environment"
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -22,7 +106,9 @@ export PATH="${HOMEBREW_PREFIX}/bin:$PATH"
 
 # --- Brewfile start ---
 log "Installing packages via brew bundle"
-brew bundle --file=- <<EOF
+
+# Build Brewfile dynamically based on selections
+BREWFILE=$(cat <<'BREWFILE_CORE'
 tap "oven-sh/bun"
 
 brew "antigen"
@@ -63,7 +149,6 @@ cask "figma"
 cask "firefox@developer-edition"
 cask "font-fira-code-nerd-font"
 cask "ghostty"
-cask "gitup-app"
 cask "google-chrome"
 cask "handbrake-app"
 cask "keyboardcleantool"
@@ -72,9 +157,13 @@ cask "moom"
 cask "obsidian"
 cask "raycast"
 cask "sf-symbols"
-cask "slack"
 cask "utm"
 cask "visual-studio-code"
+BREWFILE_CORE
+)
+
+if [[ $INSTALL_MAS -eq 1 ]]; then
+    BREWFILE+=$(cat <<'BREWFILE_MAS'
 
 mas "Actions", id: 1586435171
 mas "Affinity Designer 2", id: 1616831348
@@ -91,6 +180,12 @@ mas "Raycast Companion", id: 6738274497
 mas "Velja", id: 1607635845
 mas "WhatsApp", id: 310633997
 mas "Xcode", id: 497799835
+BREWFILE_MAS
+)
+fi
+
+if [[ $INSTALL_VSCODE -eq 1 ]]; then
+    BREWFILE+=$(cat <<'BREWFILE_VSCODE'
 
 vscode "anthropic.claude-code"
 vscode "astro-build.astro-vscode"
@@ -143,7 +238,11 @@ vscode "unifiedjs.vscode-mdx"
 vscode "vitest.explorer"
 vscode "vscode-icons-team.vscode-icons"
 vscode "yoavbls.pretty-ts-errors"
-EOF
+BREWFILE_VSCODE
+)
+fi
+
+brew bundle --file=- <<< "$BREWFILE"
 # --- Brewfile end ---
 
 # Use the latest zsh version from Homebrew

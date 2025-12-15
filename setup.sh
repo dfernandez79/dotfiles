@@ -12,8 +12,8 @@ log() {
 trap "exit" INT TERM
 
 # --- Package selection menu ---
-typeset -A options
-options=(
+typeset -A menu_items
+menu_items=(
     [mas]="Apple Store Applications (requires an iCloud Account)"
     [vscode]="VSCode Plugins"
 )
@@ -35,9 +35,9 @@ show_menu() {
         [[ ${selected[$key]} -eq 1 ]] && marker="x"
 
         if [[ $((i-1)) -eq $current ]]; then
-            print "\033[7m[$marker] ${options[$key]}\033[0m"
+            print "\033[7m[$marker] ${menu_items[$key]}\033[0m"
         else
-            print "[$marker] ${options[$key]}"
+            print "[$marker] ${menu_items[$key]}"
         fi
     done
 
@@ -45,10 +45,12 @@ show_menu() {
 }
 
 read_key() {
-    local key
-    read -rsk1 key
+    local key k1 k2
+    IFS= read -rsk1 key || true
     if [[ $key == $'\e' ]]; then
-        read -rsk2 key
+        read -rsk1 -t 0.1 k1 || true
+        read -rsk1 -t 0.1 k2 || true
+        key="${k1}${k2}"
         case $key in
             '[A') echo "up" ;;
             '[B') echo "down" ;;
@@ -56,7 +58,7 @@ read_key() {
         esac
     elif [[ $key == ' ' ]]; then
         echo "space"
-    elif [[ $key == '' ]]; then
+    elif [[ $key == $'\n' || $key == $'\r' || $key == '' ]]; then
         echo "enter"
     else
         echo ""
@@ -70,14 +72,14 @@ while true; do
 
     case $action in
         up)
-            ((current > 0)) && ((current--))
+            ((current > 0)) && ((current--)) || true
             ;;
         down)
-            ((current < ${#keys[@]} - 1)) && ((current++))
+            ((current < ${#keys[@]} - 1)) && ((current++)) || true
             ;;
         space)
-            local key=${keys[$((current + 1))]}
-            selected[$key]=$(( 1 - ${selected[$key]} ))
+            local k=${keys[$((current + 1))]}
+            selected[$k]=$(( 1 - ${selected[$k]} ))
             ;;
         enter)
             break
@@ -113,6 +115,7 @@ tap "oven-sh/bun"
 
 brew "antigen"
 brew "chezmoi"
+brew "d2"
 brew "fd"
 brew "ffmpeg"
 brew "fnm"
@@ -120,7 +123,6 @@ brew "fzf"
 brew "gh"
 brew "git"
 brew "gnupg"
-brew "graphviz"
 brew "hyperfine"
 brew "imagemagick"
 brew "jq"

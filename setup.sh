@@ -89,7 +89,6 @@ if [[ -z ${SKIP_APPSTORE:-} ]]; then
     BREWFILE+=$(cat <<'BREWFILE_MAS'
 
 mas "Actions", id: 1586435171
-mas "Affinity Designer 2", id: 1616831348
 mas "CrystalFetch", id: 6454431289
 mas "Developer", id: 640199958
 mas "Gifski", id: 1351639930

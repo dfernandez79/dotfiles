@@ -1,0 +1,2 @@
+# Workaround to correctly locate the mosh-server for mosh connections
+export PATH="/opt/homebrew/bin:$PATH"

@@ -101,7 +101,6 @@ mas "Pixelmator Pro", id: 1289583905
 mas "Raycast Companion", id: 6738274497
 mas "Velja", id: 1607635845
 mas "WhatsApp", id: 310633997
-mas "Xcode", id: 497799835
 BREWFILE_MAS
 )
 fi

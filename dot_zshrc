@@ -49,3 +49,9 @@ alias gc="git commit"
 # restore the run-help command (aliased to man for some reason)
 unalias run-help
 autoload run-help
+
+# ---------------------------------------------------------------------------
+# Auto-start tmux for SSH sessions
+if [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
+  tmux attach-session -t remote || tmux new-session -s remote
+fi

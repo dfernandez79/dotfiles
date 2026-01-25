@@ -35,6 +35,20 @@ eval "$(fnm env --use-on-cd)"
 # ---------------------------------------------------------------------------
 # Aliases
 
+alias p=pnpm
+alias pa='pnpm add'
+alias pad='pnpm add -D'
+alias pb='pnpm build'
+alias pd='pnpm dev'
+alias pin='pnpm install'
+alias pln='pnpm lint'
+alias pui='pnpm up -i -L'
+alias prm='pnpm remove'
+alias px='pnpm dlx'
+alias pt='pnpm test'
+alias ptc='pnpm test --coverage'
+alias pp='pnpm why'
+
 alias ls="lsd --group-dirs=first"
 alias ll="ls -l --git '--date=+%Y-%m-%d %H:%M:%S'"
 alias l="ll --blocks=permission,size,date,name"

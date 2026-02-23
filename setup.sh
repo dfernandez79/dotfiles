@@ -31,7 +31,7 @@ log "Installing packages via brew bundle"
 BREWFILE=$(cat <<'BREWFILE_CORE'
 tap "oven-sh/bun"
 
-brew "antigen"
+brew "antidote"
 brew "ast-grep"
 brew "chezmoi"
 brew "d2"

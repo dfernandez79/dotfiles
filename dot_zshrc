@@ -1,27 +1,9 @@
-source $HOMEBREW_PREFIX/share/antigen/antigen.zsh
-
 # ---------------------------------------------------------------------------
-# Antigen
-antigen use oh-my-zsh
+# Antidote
+source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
+antidote load
 
-antigen bundles <<EOF
-    git
-    npm
-    yarn
-    pnpm
-    gitfast
-    ripgrep
-    fzf
-    macos
-    tmux
-    djui/alias-tips
-    zsh-users/zsh-autosuggestions
-    zsh-users/zsh-completions
-    zsh-users/zsh-history-substring-search
-    zsh-users/zsh-syntax-highlighting
-EOF
-
-antigen apply
+autoload -Uz compinit && compinit
 
 # ---------------------------------------------------------------------------
 # Startship Prompt

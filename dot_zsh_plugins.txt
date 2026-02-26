@@ -1,5 +1,6 @@
 # oh-my-zsh plugins
 getantidote/use-omz
+ohmyzsh/ohmyzsh path:lib/directories.zsh
 ohmyzsh/ohmyzsh path:plugins/git
 ohmyzsh/ohmyzsh path:plugins/npm
 ohmyzsh/ohmyzsh path:plugins/yarn

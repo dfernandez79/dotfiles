@@ -3,8 +3,6 @@
 source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 antidote load
 
-autoload -Uz compinit && compinit
-
 # ---------------------------------------------------------------------------
 # Startship Prompt
 eval "$(starship init zsh)"
@@ -45,6 +43,9 @@ alias gc="git commit"
 # restore the run-help command (aliased to man for some reason)
 unalias run-help
 autoload run-help
+
+# Initialize zsh completions
+autoload -Uz compinit && compinit
 
 # ---------------------------------------------------------------------------
 # Auto-start tmux for SSH sessions

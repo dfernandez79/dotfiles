@@ -4,6 +4,54 @@ REPOSITORY=https://github.com/dfernandez79/dotfiles
 
 set -euo pipefail
 
+show_help() {
+    cat <<EOF
+Usage: setup.sh [OPTIONS]
+
+Setup macOS with dotfiles and install packages via Homebrew.
+
+OPTIONS:
+    --skip-appstore    Skip Mac App Store applications installation
+    --skip-vscode      Skip VSCode extensions installation
+    --help             Show this help message
+
+NOTES:
+    Environment variables SKIP_APPSTORE and SKIP_VSCODE are still supported
+    for remote execution (e.g., via curl). Command line arguments take
+    precedence over environment variables.
+
+EXAMPLES:
+    ./setup.sh
+    ./setup.sh --skip-appstore
+    ./setup.sh --skip-vscode
+    ./setup.sh --skip-appstore --skip-vscode
+
+EOF
+    exit 0
+}
+
+# Parse command line arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --skip-appstore)
+            SKIP_APPSTORE=1
+            shift
+            ;;
+        --skip-vscode)
+            SKIP_VSCODE=1
+            shift
+            ;;
+        --help)
+            show_help
+            ;;
+        *)
+            echo "Error: Unknown option: $1" >&2
+            echo "Run 'setup.sh --help' for usage information." >&2
+            exit 1
+            ;;
+    esac
+done
+
 # Make sure to cancel the whole script when Ctrl-C is pressed
 trap "exit" INT TERM
 

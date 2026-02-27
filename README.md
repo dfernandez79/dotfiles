@@ -12,11 +12,29 @@ These are my dotfiles. To learn more about dotfiles, see the
 
 ## Installation
 
+### Remote execution
+
 ```shell
 /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/dfernandez79/dotfiles/main/setup.sh)"
 ```
 
-It will use [Homebrew bundle](https://github.com/Homebrew/homebrew-bundle)
+### Local execution
+
+Clone or download this repository, then run:
+
+```shell
+./setup.sh
+```
+
+For available options, run:
+
+```shell
+./setup.sh --help
+```
+
+---
+
+The script will use [Homebrew bundle](https://github.com/Homebrew/homebrew-bundle)
 to install Homebrew packages, macOS applications, and VSCode plugins.
 
 The script will ask for your admin password multiple times during the installation.
@@ -27,12 +45,29 @@ purchased them. If an installation fails, ignore it, and the script will continu
 
 ### Options
 
-You can skip optional package groups by setting environment variables:
+You can skip optional package groups using command line arguments.
+
+#### Local execution (recommended)
+
+```shell
+# Skip App Store applications
+./setup.sh --skip-appstore
+
+# Skip VSCode extensions
+./setup.sh --skip-vscode
+
+# Skip both
+./setup.sh --skip-appstore --skip-vscode
+```
+
+#### Using environment variables
+
+When running remotely via curl, you can use environment variables:
 
 | Variable        | Description                     |
 | --------------- | ------------------------------- |
 | `SKIP_APPSTORE` | Skip Mac App Store applications |
-| `SKIP_VSCODE`   | Skip VSCode plugins             |
+| `SKIP_VSCODE`   | Skip VSCode extensions          |
 
 Examples:
 
@@ -40,7 +75,7 @@ Examples:
 # Skip App Store applications
 SKIP_APPSTORE=1 /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/dfernandez79/dotfiles/main/setup.sh)"
 
-# Skip VSCode plugins
+# Skip VSCode extensions
 SKIP_VSCODE=1 /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/dfernandez79/dotfiles/main/setup.sh)"
 
 # Skip both

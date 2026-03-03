@@ -59,6 +59,44 @@ log() {
     [[ -n ${DEBUG:-} ]] && printf '[INFO] %s\n' "$*" || true
 }
 
+prompt_appstore_installation() {
+    if [[ -n ${SKIP_APPSTORE:-} ]]; then
+        return
+    fi
+
+    if [[ ! -t 0 ]]; then
+        log "Non-interactive shell detected, continuing with AppStore applications installation"
+        return
+    fi
+
+    cat <<'EOF'
+The setup script is about to install AppStore applications. Before continuing, make sure that:
+1. You are logged in with an iCloud Account
+2. Open the AppStore application for the first time to make sure it's logged in.
+
+Without an iCloud login, macOS will prompt you for the password for each package.
+EOF
+
+    while true; do
+        printf '\nContinue with AppStore installation? [y/N]: '
+        read -r response
+
+        case "$response" in
+            [Yy]|[Yy][Ee][Ss])
+                break
+                ;;
+            ""|[Nn]|[Nn][Oo])
+                SKIP_APPSTORE=1
+                log "Skipping AppStore applications installation"
+                break
+                ;;
+            *)
+                printf 'Please answer yes or no.\n'
+                ;;
+        esac
+    done
+}
+
 # Install Homebrew if not already installed
 if ! command -v brew &>/dev/null && [[ ! -x /opt/homebrew/bin/brew ]]; then
     log "Installing Homebrew"
@@ -74,6 +112,8 @@ export PATH="${HOMEBREW_PREFIX}/bin:$PATH"
 
 # --- Brewfile start ---
 log "Installing packages via brew bundle"
+
+prompt_appstore_installation
 
 # Build Brewfile dynamically based on selections
 BREWFILE=$(cat <<'BREWFILE_CORE'
@@ -124,6 +164,7 @@ cask "firefox@developer-edition"
 cask "font-fira-code-nerd-font"
 cask "ghostty"
 cask "google-chrome"
+cask "grammarly-desktop"
 cask "handbrake-app"
 cask "keyboardcleantool"
 cask "macwhisper"

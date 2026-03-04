@@ -47,6 +47,9 @@ autoload run-help
 # Initialize zsh completions
 autoload -Uz compinit && compinit
 
+# Add worktrunk shell integration
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
 # ---------------------------------------------------------------------------
 # Auto-start tmux for SSH sessions
 if [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then

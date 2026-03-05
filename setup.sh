@@ -151,6 +151,7 @@ brew "starship"
 brew "tmux"
 brew "tree-sitter-cli"
 brew "uv"
+brew "worktrunk"
 brew "zsh"
 
 cask "claude"

@@ -1,2 +1,7 @@
 [post-start]
 copy = "wt step copy-ignored"
+
+[commit.generation]
+command = "MAX_THINKING_TOKENS=0 claude -p --model=haiku --tools='' --disable-slash-commands --setting-sources='' --system-prompt=''"
+
+[projects]

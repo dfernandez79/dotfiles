@@ -37,8 +37,6 @@ alias la="l -A"
 alias c="code ."
 alias yx="yarn dlx"
 
-alias wsc='wt switch --create --execute=claude'
-
 # removes the -v flag in the oh-my-zsh git plugin
 alias gc="git commit"
 

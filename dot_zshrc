@@ -48,7 +48,10 @@ autoload run-help
 autoload -Uz compinit && compinit
 
 # Add worktrunk shell integration
-if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+if command -v wt >/dev/null 2>&1; then
+  alias wsc='wt switch --create --execute=claude'
+  eval "$(command wt config shell init zsh)"
+fi
 
 # ---------------------------------------------------------------------------
 # Auto-start tmux for SSH sessions

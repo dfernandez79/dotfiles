@@ -35,6 +35,7 @@ alias l="ll --blocks=permission,size,date,name"
 alias la="l -A"
 
 alias c="code ."
+alias z="zed ."
 alias yx="yarn dlx"
 
 # removes the -v flag in the oh-my-zsh git plugin

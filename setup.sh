@@ -172,6 +172,7 @@ cask "raycast"
 cask "sf-symbols"
 cask "utm"
 cask "visual-studio-code"
+cask "zed"
 BREWFILE_CORE
 )
 

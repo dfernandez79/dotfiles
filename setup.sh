@@ -156,7 +156,6 @@ brew "worktrunk"
 brew "zsh"
 
 cask "claude"
-cask "copilot-cli"
 cask "docker-desktop"
 cask "figma"
 cask "firefox@developer-edition"

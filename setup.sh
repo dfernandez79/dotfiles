@@ -276,3 +276,13 @@ mkdir -p ~/Projects
 
 log "Initializing chezmoi from $REPOSITORY"
 chezmoi init --apply "$REPOSITORY"
+
+cat <<'EOF'
+
+Setup complete! Start a new shell to apply all changes, then run the following
+to install optional packages:
+
+    chezmoi cd
+    ./setup-optional.sh
+
+EOF

@@ -5,6 +5,7 @@ Host github.com
     UseKeychain yes
     User git
     IdentityFile ~/.ssh/id_ed25519
+    IdentitiesOnly yes
 
 # Work GitHub account
 Host github-work
@@ -13,3 +14,5 @@ Host github-work
     UseKeychain yes
     User git
     IdentityFile ~/.ssh/id_ed25519_work
+    IdentitiesOnly yes
+

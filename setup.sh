@@ -12,19 +12,16 @@ Setup macOS with dotfiles and install packages via Homebrew.
 
 OPTIONS:
     --skip-appstore    Skip Mac App Store applications installation
-    --skip-vscode      Skip VSCode extensions installation
     --help             Show this help message
 
 NOTES:
-    Environment variables SKIP_APPSTORE and SKIP_VSCODE are still supported
-    for remote execution (e.g., via curl). Command line arguments take
-    precedence over environment variables.
+    Environment variable SKIP_APPSTORE is still supported for remote
+    execution (e.g., via curl). Command line arguments take precedence
+    over environment variables.
 
 EXAMPLES:
     ./setup.sh
     ./setup.sh --skip-appstore
-    ./setup.sh --skip-vscode
-    ./setup.sh --skip-appstore --skip-vscode
 
 EOF
     exit 0
@@ -35,10 +32,6 @@ while [[ $# -gt 0 ]]; do
     case $1 in
         --skip-appstore)
             SKIP_APPSTORE=1
-            shift
-            ;;
-        --skip-vscode)
-            SKIP_VSCODE=1
             shift
             ;;
         --help)
@@ -196,69 +189,6 @@ mas "Tailscale", id: 1475387142
 mas "Velja", id: 1607635845
 mas "WhatsApp", id: 310633997
 BREWFILE_MAS
-)
-fi
-
-if [[ -z ${SKIP_VSCODE:-} ]]; then
-    BREWFILE+=$(cat <<'BREWFILE_VSCODE'
-
-vscode "anthropic.claude-code"
-vscode "astro-build.astro-vscode"
-vscode "bierner.comment-tagged-templates"
-vscode "bierner.github-markdown-preview"
-vscode "bierner.markdown-checkbox"
-vscode "bierner.markdown-emoji"
-vscode "bierner.markdown-footnotes"
-vscode "bierner.markdown-mermaid"
-vscode "bierner.markdown-preview-github-styles"
-vscode "bierner.markdown-yaml-preamble"
-vscode "biomejs.biome"
-vscode "bradlc.vscode-tailwindcss"
-vscode "charliermarsh.ruff"
-vscode "davidanson.vscode-markdownlint"
-vscode "daylerees.rainglow"
-vscode "dbaeumer.vscode-eslint"
-vscode "dnut.rewrap-revived"
-vscode "eamodio.gitlens"
-vscode "esbenp.prettier-vscode"
-vscode "foxundermoon.shell-format"
-vscode "github.copilot-chat"
-vscode "github.github-vscode-theme"
-vscode "github.vscode-github-actions"
-vscode "github.vscode-pull-request-github"
-vscode "gruntfuggly.todo-tree"
-vscode "johnpapa.vscode-peacock"
-vscode "llvm-vs-code-extensions.lldb-dap"
-vscode "mechatroner.rainbow-csv"
-vscode "ms-ossdata.vscode-pgsql"
-vscode "ms-python.debugpy"
-vscode "ms-python.python"
-vscode "ms-python.vscode-pylance"
-vscode "ms-python.vscode-python-envs"
-vscode "ms-toolsai.jupyter"
-vscode "ms-toolsai.jupyter-keymap"
-vscode "ms-toolsai.jupyter-renderers"
-vscode "ms-toolsai.vscode-jupyter-cell-tags"
-vscode "ms-toolsai.vscode-jupyter-slideshow"
-vscode "ms-vscode.remote-explorer"
-vscode "ms-vscode.remote-server"
-vscode "ms-vscode.vscode-js-profile-flame"
-vscode "pflannery.vscode-versionlens"
-vscode "pomdtr.excalidraw-editor"
-vscode "redhat.vscode-xml"
-vscode "sdras.night-owl"
-vscode "sergeypushkin.filename-case"
-vscode "streetsidesoftware.code-spell-checker"
-vscode "streetsidesoftware.code-spell-checker-spanish"
-vscode "styled-components.vscode-styled-components"
-vscode "swiftlang.swift-vscode"
-vscode "terrastruct.d2"
-vscode "thedavej.night-owl-black"
-vscode "unifiedjs.vscode-mdx"
-vscode "vitest.explorer"
-vscode "vscode-icons-team.vscode-icons"
-vscode "yoavbls.pretty-ts-errors"
-BREWFILE_VSCODE
 )
 fi
 

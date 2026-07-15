@@ -110,7 +110,8 @@ prompt_appstore_installation
 
 # Build Brewfile dynamically based on selections
 BREWFILE=$(cat <<'BREWFILE_CORE'
-tap "oven-sh/bun"
+tap "docker/tap", trusted: true
+tap "oven-sh/bun", trusted: true
 
 brew "antidote"
 brew "ast-grep"

@@ -5,3 +5,11 @@ copy = "wt step copy-ignored"
 command = "MAX_THINKING_TOKENS=0 claude -p --model=haiku --tools='' --disable-slash-commands --setting-sources='' --system-prompt=''"
 
 [projects]
+
+[list]
+json-schema = 1
+
+[projects."github.com/canteralabor/cantera"]
+post-start.clean-links = "find . -path '*/node_modules/@cantera/*' -type l -delete"
+post-start.install = "pnpm install --frozen-lockfile"
+step.copy-ignored.exclude = [".next", ".turbo", ".env.local"]

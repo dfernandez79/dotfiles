@@ -50,6 +50,6 @@ autoload -Uz compinit && compinit
 
 # Add worktrunk shell integration
 if command -v wt >/dev/null 2>&1; then
-  alias wsc='wt switch --create --execute=claude'
+  alias wsc='wt switch --create --no-cd'
   eval "$(command wt config shell init zsh)"
 fi

@@ -1,4 +1,10 @@
 {
+  "git_panel": {
+    "entry_primary_click_action": "file_diff",
+    "collapse_untracked_diff": true,
+    "tree_view": false,
+    "group_by": "staging"
+  },
   "buffer_font_family": "FiraCode Nerd Font Mono",
   "cli_default_open_behavior": "new_window",
   "proxy": "",
@@ -18,6 +24,10 @@
   },
   "agent_servers": {
     "claude-acp": {
+      "default_config_options": {
+        "mode": "default",
+        "model": "opus[1m]"
+      },
       "type": "registry"
     }
   },

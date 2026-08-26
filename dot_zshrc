@@ -45,16 +45,40 @@ alias gc="git commit"
 unalias run-help
 autoload run-help
 
-# Initialize zsh completions
-autoload -Uz compinit && compinit
+# ---------------------------------------------------------------------------
+# Worktrunk Integration
 
-# Add worktrunk shell integration
 if command -v wt >/dev/null 2>&1; then
   wts() {
     wt switch --no-cd "$1" --execute=herdr -- worktree open --focus --branch "$1"
   }
+
   wtsc() {
-    wt switch --create --no-cd "$1" --execute=herdr -- worktree open --focus --branch="$1"
+    if [[ $# -ge 2 ]]; then
+      wt switch --create --no-cd "$1" --base "$2" --execute=herdr -- worktree open --focus --branch "$1"
+    else
+      wt switch --create --no-cd "$1" --execute=herdr -- worktree open --focus --branch "$1"
+    fi
   }
+
+  _wtsc_completion() {
+    local branches
+    branches=($(git branch --format='%(refname:short)' 2>/dev/null))
+    _describe 'branch' branches
+  }
+
+  # Add autocompletion to wts* functions
+  compdef _wtsc_completion wts
+  compdef _wtsc_completion wtsc
+
   eval "$(command wt config shell init zsh)"
 fi
+
+# ---------------------------------------------------------------------------
+
+export EDITOR=nvim
+
+# Initialize zsh completions
+autoload -Uz compinit && compinit
+
+

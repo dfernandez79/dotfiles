@@ -1,8 +1,12 @@
 {
+  "git": {
+    "diff_base": "head"
+  },
+  "show_wrap_guides": true,
   "git_panel": {
     "entry_primary_click_action": "file_diff",
     "collapse_untracked_diff": true,
-    "tree_view": false,
+    "tree_view": true,
     "group_by": "staging"
   },
   "buffer_font_family": "FiraCode Nerd Font Mono",
@@ -18,15 +22,15 @@
     "bold_folder_labels": false
   },
   "icon_theme": {
-    "mode": "system",
+    "mode": "dark",
     "light": "Zed (Default)",
     "dark": "Zed (Default)"
   },
   "agent_servers": {
     "claude-acp": {
       "default_config_options": {
-        "mode": "default",
-        "model": "opus[1m]"
+        "mode": "auto",
+        "model": "default"
       },
       "type": "registry"
     }
@@ -34,7 +38,7 @@
   "ui_font_size": 16,
   "buffer_font_size": 15,
   "theme": {
-    "mode": "system",
+    "mode": "dark",
     "light": "One Light",
     "dark": "Ayu Dark"
   }

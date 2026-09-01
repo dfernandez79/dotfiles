@@ -67,6 +67,8 @@ if command -v wt >/dev/null 2>&1; then
     _describe 'branch' branches
   }
 
+  alias wtl="wt list"
+
   # Add autocompletion to wts* functions
   compdef _wtsc_completion wts
   compdef _wtsc_completion wtsc
@@ -77,6 +79,14 @@ fi
 # ---------------------------------------------------------------------------
 
 export EDITOR=nvim
+# The zsh heuristic will change the keybinds to vi if the EDITOR contains vi
+# This resets the shell keybindis to emacs
+bindkey -e
+
+# Initialize custom functions
+function_dir="$HOME/.zsh/functions"
+fpath=("$function_dir" $fpath)
+autoload -Uz "$function_dir"/*(N:t)
 
 # Initialize zsh completions
 autoload -Uz compinit && compinit

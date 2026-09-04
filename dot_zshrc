@@ -15,6 +15,7 @@ eval "$(fnm env --use-on-cd)"
 # ---------------------------------------------------------------------------
 # Aliases
 
+# Node/Bun package managers
 alias p=pnpm
 alias pa='pnpm add'
 alias pad='pnpm add -D'
@@ -29,14 +30,19 @@ alias pt='pnpm test'
 alias ptc='pnpm test --coverage'
 alias pp='pnpm why'
 
+alias bx='bunx'
+
+alias yx="yarn dlx"
+
+# ls
 alias ls="lsd --group-dirs=first"
 alias ll="ls -l --git '--date=+%Y-%m-%d %H:%M:%S'"
 alias l="ll --blocks=permission,size,date,name"
 alias la="l -A"
 
-alias c="code ."
+# Editors
+alias c="codium ."
 alias z="zed ."
-alias yx="yarn dlx"
 
 # removes the -v flag in the oh-my-zsh git plugin
 alias gc="git commit"

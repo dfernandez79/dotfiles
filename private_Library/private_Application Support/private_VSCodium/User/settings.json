@@ -1,0 +1,47 @@
+{
+    "claudeCode.preferredLocation": "panel",
+    "json.schemaDownload.trustedDomains": {
+        "https://schemastore.azurewebsites.net/": true,
+        "https://raw.githubusercontent.com/microsoft/vscode/": true,
+        "https://raw.githubusercontent.com/devcontainers/spec/": true,
+        "https://www.schemastore.org/": true,
+        "https://json.schemastore.org/": true,
+        "https://json-schema.org/": true,
+        "https://developer.microsoft.com/json-schemas/": true,
+        "https://biomejs.dev": true
+    },
+    "editor.accessibilitySupport": "off",
+    "githubPullRequests.queries": [
+        {
+            "label": "From My Team Pending Review",
+            "query": "repo:${owner}/${repository} is:open is:pr review:none -author:dfernandez79 "
+        },
+        {
+            "label": "Local Pull Request Branches",
+            "query": "default"
+        },
+        {
+            "label": "Waiting For My Review",
+            "query": "repo:${owner}/${repository} is:open review-requested:${user}"
+        },
+        {
+            "label": "Created By Me",
+            "query": "repo:${owner}/${repository} is:open author:${user}"
+        },
+        {
+            "label": "All Open",
+            "query": "default"
+        }
+    ],
+    "editor.minimap.enabled": false,
+    "git.autofetch": true,
+    "workbench.colorTheme": "Dark Modern",
+    "[typescript]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "terminal.external.osxExec": "/Applications/Ghostty.app",
+    "editor.fontFamily": "FiraCode Nerd Font",
+    "editor.fontSize": 14,
+    "editor.fontLigatures": true
+}
+

@@ -164,7 +164,7 @@ cask "obsidian"
 cask "raycast"
 cask "sf-symbols"
 cask "utm"
-cask "visual-studio-code"
+cask "vscodium"
 cask "zed"
 BREWFILE_CORE
 )

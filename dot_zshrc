@@ -84,7 +84,12 @@ fi
 
 # ---------------------------------------------------------------------------
 
-export EDITOR=nvim
+# Use nvim over SSH, VSCodium in a local GUI session
+if [[ -n "$SSH_CONNECTION" || -n "$SSH_TTY" || -n "$SSH_CLIENT" ]]; then
+  export EDITOR=nvim
+else
+  export EDITOR="codium --wait"
+fi
 # The zsh heuristic will change the keybinds to vi if the EDITOR contains vi
 # This resets the shell keybindis to emacs
 bindkey -e

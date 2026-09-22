@@ -42,6 +42,14 @@
     "terminal.external.osxExec": "/Applications/Ghostty.app",
     "editor.fontFamily": "FiraCode Nerd Font",
     "editor.fontSize": 14,
-    "editor.fontLigatures": true
+    "editor.fontLigatures": true,
+    "js/ts.updateImportsOnFileMove.enabled": "always",
+    "[jsonc]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "claudeCode.hideOnboarding": true
 }
 

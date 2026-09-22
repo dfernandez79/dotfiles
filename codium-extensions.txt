@@ -1,5 +1,6 @@
 anthropic.claude-code
 biomejs.biome
+bradlc.vscode-tailwindcss
 github.vscode-pull-request-github
 oxc.oxc-vscode
 pflannery.vscode-versionlens

@@ -52,6 +52,17 @@ unalias run-help
 autoload run-help
 
 # ---------------------------------------------------------------------------
+# Claude Multi-Profile
+
+claude-work() {
+  CLAUDE_CONFIG_DIR="$HOME/.config/claude-work" claude "$@"
+}
+
+claude-personal() {
+  CLAUDE_CONFIG_DIR="$HOME/.config/claude-personal" claude "$@"
+}
+
+# ---------------------------------------------------------------------------
 # Worktrunk Integration
 
 if command -v wt >/dev/null 2>&1; then

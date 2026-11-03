@@ -1,14 +1,15 @@
 {
     "claudeCode.preferredLocation": "panel",
     "json.schemaDownload.trustedDomains": {
-        "https://schemastore.azurewebsites.net/": true,
-        "https://raw.githubusercontent.com/microsoft/vscode/": true,
-        "https://raw.githubusercontent.com/devcontainers/spec/": true,
-        "https://www.schemastore.org/": true,
-        "https://json.schemastore.org/": true,
-        "https://json-schema.org/": true,
+        "https://biomejs.dev": true,
         "https://developer.microsoft.com/json-schemas/": true,
-        "https://biomejs.dev": true
+        "https://json-schema.org/": true,
+        "https://json.schemastore.org/": true,
+        "https://raw.githubusercontent.com/devcontainers/spec/": true,
+        "https://raw.githubusercontent.com/microsoft/vscode/": true,
+        "https://schemastore.azurewebsites.net/": true,
+        "https://turbo.build": true,
+        "https://www.schemastore.org/": true
     },
     "editor.accessibilitySupport": "off",
     "githubPullRequests.queries": [
@@ -50,6 +51,17 @@
     "[typescriptreact]": {
         "editor.defaultFormatter": "oxc.oxc-vscode"
     },
-    "claudeCode.hideOnboarding": true
+    "claudeCode.hideOnboarding": true,
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+        "*.ts": "${capture}.js, ${capture}.test.ts",
+        "*.tsx": "${capture}.ts, ${capture}.test.tsx"
+    },
+    "githubPullRequests.pullBranch": "never",
+    "git.blame.editorDecoration.enabled": false,
+    "git.blame.statusBarItem.enabled": true,
+    "[json]": {
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    }
 }
 

@@ -131,6 +131,7 @@ brew "lazygit"
 brew "lsd"
 brew "luarocks"
 brew "mas"
+brew "mole"
 brew "mosh"
 brew "neovim"
 brew "oven-sh/bun/bun"
@@ -140,7 +141,6 @@ brew "pinentry"
 brew "poppler"
 brew "ripgrep"
 brew "ripgrep-all"
-brew "rtk"
 brew "shfmt"
 brew "starship"
 brew "tmux"
@@ -154,16 +154,16 @@ cask "docker-desktop"
 cask "figma"
 cask "firefox@developer-edition"
 cask "font-fira-code-nerd-font"
+cask "free-ruler"
 cask "ghostty"
 cask "google-chrome"
 cask "grammarly-desktop"
 cask "handbrake-app"
-cask "keyboardcleantool"
 cask "macwhisper"
 cask "obsidian"
-cask "raycast"
 cask "sf-symbols"
 cask "utm"
+cask "vorssaint"
 cask "vscodium"
 cask "zed"
 BREWFILE_CORE
@@ -176,14 +176,12 @@ mas "Actions", id: 1586435171
 mas "CrystalFetch", id: 6454431289
 mas "Developer", id: 640199958
 mas "Gifski", id: 1351639930
-mas "Hidden Bar", id: 1452453066
 mas "iA Writer", id: 775737590
 mas "Keynote", id: 361285480
 mas "Kindle", id: 302584613
 mas "Numbers", id: 361304891
 mas "Pages", id: 361309726
 mas "Pixelmator Pro", id: 1289583905
-mas "Raycast Companion", id: 6738274497
 mas "Tailscale", id: 1475387142
 mas "Velja", id: 1607635845
 mas "WhatsApp", id: 310633997

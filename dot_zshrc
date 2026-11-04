@@ -55,12 +55,14 @@ autoload run-help
 # Claude Multi-Profile
 
 claude-work() {
-  CLAUDE_CONFIG_DIR="$HOME/.config/claude-work" claude "$@"
+  CLAUDE_CONFIG_DIR="$HOME/.config/claude-work" command claude "$@"
 }
 
 claude-personal() {
-  CLAUDE_CONFIG_DIR="$HOME/.config/claude-personal" claude "$@"
+  CLAUDE_CONFIG_DIR="$HOME/.config/claude-personal" command claude "$@"
 }
+
+alias claude=claude-work
 
 # ---------------------------------------------------------------------------
 # Worktrunk Integration

@@ -28,6 +28,14 @@ fi
 echo "Installing Claude Code..."
 curl -fsSL https://claude.ai/install.sh | bash
 
+# Install rustup (PATH comes from ~/.cargo/env, sourced in .zprofile)
+if [[ -x $HOME/.cargo/bin/rustup ]]; then
+    echo "rustup already installed, skipping"
+else
+    echo "Installing rustup..."
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+fi
+
 # Install qmd
 echo "Installing qmd..."
 bun install -g @tobilu/qmd

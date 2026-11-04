@@ -4,3 +4,4 @@ setup.sh
 Brewfile
 setup-optional.sh
 codium-extensions.txt
+brew-diff.sh

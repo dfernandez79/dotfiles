@@ -22,6 +22,7 @@ case "$profile" in
   *) label="$profile" ;;
 esac
 out="${color}${label}${reset}"
+out_compact="$out"
 
 branch=$(git -C "$dir" branch --show-current 2>/dev/null)
 if [ -z "$branch" ]; then
@@ -34,12 +35,14 @@ if [ -n "$branch" ]; then
   common=$(cd "$dir" && cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd)
   repo=$(basename "$(dirname "$common")")
   out="$out \033[97m${repo}${reset} ${dim}·${reset} $branch"
+  out_compact="$out_compact $branch"
 fi
 
 model=$(printf '%s' "$input" | jq -r '.model.display_name // empty')
 effort=$(printf '%s' "$input" | jq -r '.effort.level // empty')
 [ -n "$effort" ] && model="$model ${dim}[${effort}]${reset}"
 right="$model"
+right_compact="$model"
 
 # Context usage: prefer the precomputed percentage, else derive it.
 ctx=$(printf '%s' "$input" | jq -r '
@@ -76,12 +79,20 @@ vis_width() {
 # Right-align: Claude Code sets COLUMNS to the terminal width.
 cols=${COLUMNS:-$(tput cols 2>/dev/null)}
 if [ -n "$right" ] && [ -n "$cols" ] && [ "$cols" -gt 0 ]; then
+  # Claude Code draws the status line 4 columns narrower than COLUMNS
+  # (measured), so subtract 4 to reach the right edge on screen.
+  avail=$(( cols - 4 ))
   # The profile emoji is 2 columns wide; measure the rest as text.
   lw=$(( $(vis_width "${out#*"$label"}") + 2 ))
   rw=$(vis_width "$right")
-  # Claude Code draws the status line 5 columns narrower than COLUMNS
-  # (measured), so subtract 6 for a 1-column right margin on screen.
-  gap=$(( cols - lw - rw - 6 ))
+  if [ $(( lw + rw + 2 )) -gt "$avail" ]; then
+    # Too narrow: drop the repo name and the context bar.
+    out="$out_compact"
+    right="$right_compact"
+    lw=$(( $(vis_width "${out#*"$label"}") + 2 ))
+    rw=$(vis_width "$right")
+  fi
+  gap=$(( avail - lw - rw ))
   [ "$gap" -lt 2 ] && gap=2
   printf '%b%*s%b' "$out" "$gap" '' "$right"
 elif [ -n "$right" ]; then

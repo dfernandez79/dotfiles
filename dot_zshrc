@@ -110,7 +110,10 @@ bindkey -e
 # Initialize custom functions
 function_dir="$HOME/.zsh/functions"
 fpath=("$function_dir" $fpath)
-autoload -Uz "$function_dir"/*(N:t)
+# Guard: a bare `autoload -Uz` (empty glob) would list every autoloaded function
+funcs=("$function_dir"/*(N:t))
+(( $#funcs )) && autoload -Uz $funcs
+unset funcs function_dir
 
 # Initialize zsh completions
 autoload -Uz compinit && compinit

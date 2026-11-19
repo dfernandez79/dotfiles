@@ -9,7 +9,7 @@ EXTENSIONS_FILE="$SCRIPT_DIR/codium-extensions.txt"
 
 # Check all required binaries before doing any work
 MISSING=()
-for cmd in bun gh codium; do
+for cmd in gh codium; do
     command -v "$cmd" &>/dev/null || MISSING+=("$cmd")
 done
 
@@ -35,10 +35,6 @@ else
     echo "Installing rustup..."
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
 fi
-
-# Install qmd
-echo "Installing qmd..."
-bun install -g @tobilu/qmd
 
 # Install gh extensions
 echo "Installing gh extensions..."
